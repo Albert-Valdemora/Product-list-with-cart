@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ProdContext } from '../ProdContext'
+
 
 export const Pedidos = () => {
+
+  const {producto} = useContext(ProdContext)
+  console.log(producto);
+  
+
   return (
     <div className='w-96 h-64 bg-white p-8 rounded-2xl ms:mx-0 mx-auto '>
       <h2 className='text-xl text-[#c3410f] font-bold'>Your Cart (0)</h2>

@@ -1,25 +1,35 @@
+import { useContext, useState } from "react";
 import "./App.css";
 import { Card } from "./components/card/Card";
 import { Pedidos } from "./components/pedidos/Pedidos";
+import { ProdContext } from "./components/ProdContext";
 import data from "./data.json";
 
 function App() {
-  console.log(data);
+  const [producto, setProducto] = useState([{
+    id: 1,
+    name: "Waffle with Berries",
+    precio: '$6.50'
+  }]);
 
   return (
-    <main className="contenedor-productos">
-      <h1 className="text-3xl font-bold my-10 text-center sm:text-left">Desserts</h1>
-      <div className="flex flex-col sm:flex-row sm:justify-between">
-        <div className="w-full sm:w-3/6 flex flex-wrap justify-center gap-6">
-          {data.map((e) => (
-            <Card key={e.category} {...e} />
-          ))}
+    <ProdContext.Provider value={{producto, setProducto}}>
+      <main className="contenedor-productos">
+        <h1 className="text-3xl font-bold my-10 text-center sm:text-left">
+          Desserts
+        </h1>
+        <div className="flex flex-col sm:flex-row sm:justify-between">
+          <div className="w-full sm:w-3/6 flex flex-wrap justify-center gap-6">
+            {data.map((e) => (
+              <Card key={e.category} {...e} />
+            ))}
+          </div>
+          <div className="w-full sm:w-auto mt-8 sm:mt-0 ">
+            <Pedidos />
+          </div>
         </div>
-        <div className="w-full sm:w-auto mt-8 sm:mt-0 ">
-          <Pedidos />
-        </div>
-      </div>
-    </main>
+      </main>
+    </ProdContext.Provider>
   );
 }
 
