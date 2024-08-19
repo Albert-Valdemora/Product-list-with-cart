@@ -1,22 +1,22 @@
 
-export const CarritoReducer = (state = [], action) => {
-
+export const CarritoReducer = (state, action) => {
   switch (action.type) {
     case 'add':
-      return [...state, action.payload]
+      const existingProductIndex = state.findIndex(p => p.name === action.payload.name);
 
-    case 'delete':
-      return state.filter(todo => todo.id !== action.payload); 
-  
+      if (existingProductIndex >= 0) {
+        const updatedCart = state.map((item, index) =>
+          index === existingProductIndex ? { ...item, cantida: action.payload.cantida } : item
+        );
+        return updatedCart;
+      } else {
+        return [...state, { ...action.payload}];
+      }
 
-    case 'toggle':
-      return state.map(todo => 
-      (todo.id === action.payload)
-        ?{...todo, done: !todo.done}
-        :todo
-      )
-
+      case 'delete':
+        return state.filter(item => item.id !== action.payload); 
+        
     default:
       return state;
   }
-}
+};

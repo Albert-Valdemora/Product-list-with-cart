@@ -1,19 +1,17 @@
-import { useContext, useState } from "react";
+import { useReducer } from "react";
 import "./App.css";
 import { Card } from "./components/card/Card";
 import { Pedidos } from "./components/pedidos/Pedidos";
 import { ProdContext } from "./components/ProdContext";
 import data from "./data.json";
+import { CarritoReducer } from "./components/CarritoReducer";
 
 function App() {
-  const [producto, setProducto] = useState([{
-    id: 1,
-    name: "Waffle with Berries",
-    precio: '$6.50'
-  }]);
+  // const [producto, setProducto] = useState([]);
+  const [producto, dispatch] = useReducer(CarritoReducer, []);
 
   return (
-    <ProdContext.Provider value={{producto, setProducto}}>
+    <ProdContext.Provider value={{producto, dispatch}}>
       <main className="contenedor-productos">
         <h1 className="text-3xl font-bold my-10 text-center sm:text-left">
           Desserts
