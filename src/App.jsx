@@ -7,7 +7,6 @@ import data from "./data.json";
 import { CarritoReducer } from "./components/CarritoReducer";
 
 function App() {
-  // const [producto, setProducto] = useState([]);
   const [producto, dispatch] = useReducer(CarritoReducer, []);
 
   return (

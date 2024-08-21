@@ -1,4 +1,3 @@
-
 export const CarritoReducer = (state, action) => {
   switch (action.type) {
     case 'add':
@@ -13,9 +12,10 @@ export const CarritoReducer = (state, action) => {
         return [...state, { ...action.payload}];
       }
 
-      case 'delete':
-        return state.filter(item => item.id !== action.payload); 
-        
+
+    case 'delete':
+      return state.filter(item => item.id !== action.payload);
+
     default:
       return state;
   }
