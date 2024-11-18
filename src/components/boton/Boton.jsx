@@ -4,8 +4,8 @@ import { ProdContext } from "../ProdContext";
 export const Boton = ({ product }) => {
   const [cantidad, setCantidad] = useState(0);
   const { dispatch } = useContext(ProdContext);
+   
 
-  
   const handleAddToCart = () => {
     setCantidad(1);
     dispatch({ type: 'add', payload: { ...product, cantida: 1 } });
@@ -14,8 +14,7 @@ export const Boton = ({ product }) => {
   const handleQuantityChange = (newCantidad) => {
     setCantidad(newCantidad);
     if (cantidad >= 1) {
-      dispatch({ type: 'add', payload: { ...product, cantida: newCantidad } });
-      console.log('cambio');    
+      dispatch({ type: 'add', payload: { ...product, cantida: newCantidad } });   
     }
   };
 

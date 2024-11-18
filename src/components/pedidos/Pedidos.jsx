@@ -3,7 +3,8 @@ import { ProdContext } from "../ProdContext";
 
 export const Pedidos = () => {
   const { producto, dispatch } = useContext(ProdContext);
-  console.log(producto);
+
+  
 
   const total = producto.reduce((acc, p) => {
     const precio = parseFloat(p.price);
@@ -12,7 +13,7 @@ export const Pedidos = () => {
   }, 0);
 
   const handleRemoveProduct = (id) => {
-    dispatch({ type: 'delete', payload: id }); // Dispatch para eliminar el producto por id
+    dispatch({ type: 'delete', payload: id });
   };
 
   return (
