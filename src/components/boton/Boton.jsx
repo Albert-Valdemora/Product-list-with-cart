@@ -1,14 +1,29 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ProdContext } from "../ProdContext";
 
 export const Boton = ({ product }) => {
   const [cantidad, setCantidad] = useState(0);
-  const { dispatch } = useContext(ProdContext);
+  const { producto, dispatch } = useContext(ProdContext);
+
+
+  useEffect(() => {
+  const prodInCart = producto.find(p => p.name === product.name);
+
+  
+  if (prodInCart) {
+    setCantidad(prodInCart.cantida);
+  } else {
+    setCantidad(0);
+  }
+}, [producto]);
+
+
    
 
   const handleAddToCart = () => {
     setCantidad(1);
     dispatch({ type: 'add', payload: { ...product, cantida: 1 } });
+    
   };
 
   const handleQuantityChange = (newCantidad) => {
