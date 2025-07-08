@@ -9,6 +9,8 @@ import { CarritoReducer } from "./components/CarritoReducer";
 function App() {
   const [producto, dispatch] = useReducer(CarritoReducer, []);
 
+  
+
   return (
     <ProdContext.Provider value={{producto, dispatch}}>
       <main className="contenedor-productos">
